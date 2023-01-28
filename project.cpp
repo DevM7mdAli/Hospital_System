@@ -31,9 +31,18 @@ string dose;
 
 int main()
 {
-int Size;
+int choose;
 
+cout << "------------------------------------------------------------------------------------" << endl;
+cout << "\t\t\t welcome to the hospetal system" << endl;
+cout << "------------------------------------------------------------------------------------" << endl << endl;
 
-
-
+cout << "choose one of the options: " << endl
+     << "1- adding new item. " << endl
+     << "2- Search " << endl
+     << "3- update existing record " << endl
+     << "4- delete patient " << endl
+     << "5- Sort patients" << endl 
+     << "6- print all patients ";
+      cin >> choose;
 }
