@@ -25,14 +25,14 @@ void saveData(string fName, Patients lib[]);
 void addPatients(Patients lib[] );
 void deletePatients(Patients lib[]); //Still not defined
 void Menu();
-
+void choose(int x);
 int main()
 {
     Menu();
     int choice;
     cout<< "Please enter your choice: ";
     cin >> choice;
-
+    choose(choice);
 //I updated the menu ~Mustafa
 }
 
@@ -41,7 +41,6 @@ void addPatients(Patients lib[] )
 {
     string name,ID,age,phoneNumber,medicine,dose;
     int choice;
-    do{
         cout<< "Enter Patient name: ";
         cin>> name;
         cout<< "Enter Patient ID: ";
@@ -62,10 +61,6 @@ void addPatients(Patients lib[] )
         lib[Size].medicine=medicine;
         lib[Size].dose=dose;
         Size++;
-
-        cout << "\nEnter -1 to quit: ";
-        cin >> choice ;
-    }while(choice!=-1);
 
     cout<< "Patient have been added successfully.\n";
 }
@@ -133,4 +128,12 @@ void Menu()
          << "[5] Sort patients" << endl
          << "[6] Display all patients "<<endl
          << "[7] Exit Program "<<endl;
+}
+void choose(int x)
+{
+    switch (x)
+    {
+        case 1:
+            addPatients(lib);
+    }
 }
