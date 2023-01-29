@@ -13,7 +13,7 @@ void del();
 void sort();
 void print();
 
-
+//omar_Alsubgh;
 
 
 //Struct for patients
