@@ -2,17 +2,11 @@
 
 
 -  Main Services:
-
-  o adding new item.
-  
-  o search for specific item.
-  
-  o update existing record.
-  
-  o delete.
-  
-  o Sort.
-  
-  o Display.
+- adding new item.
+- search for specific item.
+- update existing record.
+- delete.  
+- Sort. 
+- Display.
   
   
