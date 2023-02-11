@@ -4,6 +4,7 @@
 #include <algorithm>
 #include <fstream>
 #include <ctime>
+#include <sstream>
 
 using namespace std;
 //Struct for Patients
@@ -17,34 +18,34 @@ struct Patients
     string dose;
 };
 
-//Global Variables:
-string fName="data.txt"; //where the patients info are stored
-const int LIMIT = 300; //300 patients only
+//Global Variables
+const int LIMIT = 100000; //100000 patients only
 int Size=0; //How many students are inputted in the txt file
 Patients lib[LIMIT]; //the array where we will write to
 
 //Functions Declarations:
-void read();
+void Menu();
+void choose(int x);
 void loadData(Patients lib[]);
+void addPatients(Patients lib[]);
 void displayData(Patients lib[]);
+void search(Patients lib[], string x);
+void search(Patients lib[], int x);
 void UpdateData(Patients lib[]);
 void saveData(Patients lib[] );
-void addPatients(Patients lib[]);
 void deletePatients(Patients lib[]);
 void DisplayAll(Patients lib[]);
 void Sort(Patients lib[]);
 bool sortByID(Patients &a, Patients &b);
 bool sortByName(Patients &a, Patients &b);
-void choose(int x);
-void Menu();
 void report();
 
 int main()
 {
+	cout<<"This Program was made by: Mustafa Aljishi, Ali Abu Hulaigah, Mohammed AlAjmi, Ali AlBaqqal, Omar AlSubgh, Baqer AlHaddad\n";
     Here:
-    read(); // opening the file "data.txt"
-    
-    loadData(lib); //loading the data from txt file "data.txt"
+
+    loadData(lib); //opening and reading the data from txt file "data.txt"
 
     Menu(); //loading the main menu
     
@@ -111,7 +112,7 @@ void UpdateData(Patients lib[])
     cout<<"Please enter the name of the patient you are looking forward to update: "<<endl;
     cin>>name;
     int index;
-    bool found;
+    bool found=false;
     for(int i=0; i<Size; i++)
     {
         if(lib[i].name==name)
@@ -123,11 +124,7 @@ void UpdateData(Patients lib[])
     }
     if (found==true)
     {
-        cout<<"\nDo you wish to update the information of the patient you searched for? (1 for yes, anything for no)\n";
-        int display;
-        cin>>display;
-        if (display==1)
-        {
+    	cout<<"\nPatient Found!\n";
             string name,ID,age,phoneNumber,medicine,dose;
             int choice;
             cout<< "\nEnter Updated Patient name: ";
@@ -152,7 +149,7 @@ void UpdateData(Patients lib[])
 
 
             cout<< "Patient have been updated successfully.\n";
-        }
+        
     }
     else
     {
@@ -192,49 +189,33 @@ void addPatients(Patients lib[] )
 void displayData(Patients lib[])
 {
     string name;
+    string id;
     string element;
-    cout<<"Please enter the name of the patient you are looking for: "<<endl;
-    cin>>name;
-    int index;
-    bool found;
-    for(int i=0; i<Size; i++)
+    cout<<"\n Choose an option below: ";
+    cout<<"\n [1] Search by Name\n[2] Search by ID\n";
+    int chos;
+    cout<<"Your choice: ";
+    cin >> chos;
+    if (chos==1)
     {
-        if(lib[i].name==name)
-        {
-            found=true;
-            index=i;
-            break;
-        }
-    }
-    if (found==true)
-    {
-        cout<<"\nDo you wish to display the information of the patient you searched for? (1 for yes, anything for no)\n";
-        int display;
-        cin>>display;
-        if (display==1)
-        {
-            cout<<"\nID:\t\t"<<lib[index].name<<endl;
-            cout<<"Name:\t\t"<<lib[index].ID<<endl;
-            cout<<"Age:\t\t"<<lib[index].age<<endl;
-            cout<<"PhoneNumber:\t\t"<<lib[index].PhoneNumber<<endl;
-            cout<<"Medicine:\t\t"<<lib[index].medicine<<endl;
-            cout<<"Dose:\t\t"<<lib[index].dose<<endl;
-        }
-    }
-    else
-    {
-        cout<<"\nPatient not found.\n";
-    }
-
-}
-void read()
-{
-    ifstream inFile;
-    inFile.open("data.txt");
-    if(inFile.is_open())
-    {
-        cout<<"\n\n";
-    }
+    	cout<<"Please enter the name of the patient you are looking for: "<<endl;
+        getline(cin >>ws, name);
+    	search(lib, name);
+	}
+	else if(chos==2)
+	{
+	    cout<<"Please enter the ID of the patient you are looking for: "<<endl;
+        cin>>id;
+        stringstream geek(id);
+        int AyD=0;
+        geek >> AyD;
+		search(lib, AyD);
+	}
+	else
+	{
+		cout<<"\nWrong entry\n";
+		exit(1);
+	}
 }
 void Menu()
 {
@@ -256,7 +237,7 @@ void deletePatients(Patients lib[])
     string name;
     string element;
     cout<<"Please enter the Patient name you want to delete: "<<endl;
-    cin>>name;
+    getline(cin >>ws, name);
     int index;
     bool found;
     for(int i=0; i<Size; i++)
@@ -343,7 +324,7 @@ void Sort(Patients lib[])
         }
         cout<<endl;
     }
-    else
+    else if(chosi==2)
     {
         cout<<"Sorting the data by ID: \n";
         sort(&lib[0],&lib[Size],sortByID);
@@ -354,6 +335,11 @@ void Sort(Patients lib[])
         }
         cout<<endl;
     }
+    else
+	{
+		cout<<"\nWrong entry\n";
+		exit(1);
+	}
 
 }
 void report()
@@ -377,4 +363,65 @@ void report()
         else
           cout << "Failed  !" <<endl;
 
+}
+void search(Patients lib[], string x)
+{
+    int index;
+    bool found;
+    for(int i=0; i<Size; i++)
+    {
+        if(lib[i].name==x)
+        {
+            found=true;
+            index=i;
+            break;
+        }
+    }
+    if (found==true)
+    {
+        cout<<"\nPatient Found!\n";
+        cout<<"\nName:\t\t"<<lib[index].name<<endl;
+        cout<<"ID:\t\t"<<lib[index].ID<<endl;
+        cout<<"Age:\t\t"<<lib[index].age<<endl;
+        cout<<"PhoneNumber:\t\t"<<lib[index].PhoneNumber<<endl;
+        cout<<"Medicine:\t\t"<<lib[index].medicine<<endl;
+        cout<<"Dose:\t\t"<<lib[index].dose<<endl;
+    }
+    else
+    {
+        cout<<"\nPatient not found.\n";
+    }
+
+}
+void search(Patients lib[], int x)
+{
+    stringstream ss;
+    ss << x;
+    string id = ss.str();
+    int index;
+    bool found;
+    for(int i=0; i<Size; i++)
+    {
+        if(lib[i].ID==id)
+        {
+            found=true;
+            index=i;
+            break;
+        }
+    }
+    if (found==true)
+    {
+            cout<<"\nPatient Found!\n";
+            cout<<"\nName:\t\t"<<lib[index].name<<endl;
+            cout<<"ID:\t\t"<<lib[index].ID<<endl;
+            cout<<"Age:\t\t"<<lib[index].age<<endl;
+            cout<<"PhoneNumber:\t\t"<<lib[index].PhoneNumber<<endl;
+            cout<<"Medicine:\t\t"<<lib[index].medicine<<endl;
+            cout<<"Dose:\t\t"<<lib[index].dose<<endl;
+    }
+    else
+    {
+        cout<<"\nPatient not found.\n";
+    }
+    
 }
