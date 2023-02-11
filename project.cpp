@@ -23,9 +23,9 @@ int Size=0; //How many students are inputted in the txt file
 Patients lib[LIMIT]; //the array where we will write to
 
 //Functions Declarations:
-void Menu();
-void choose(int x);
-void loadData(Patients lib[]);
+void Menu();// just for cout the menu
+void choose(int x); // switch for the menu
+void loadData(Patients lib[]); 
 void addPatients(Patients lib[]);
 void displayData(Patients lib[]);
 void search(Patients lib[], string x);
@@ -41,7 +41,6 @@ void report();
 
 int main()
 {
-	cout<<"This Program was made by: Mustafa Aljishi, Ali Abu Hulaigah, Mohammed AlAjmi, Ali AlBaqqal, Omar AlSubgh, Baqer AlHaddad\n";
     Here:
 
     loadData(lib); //opening and reading the data from txt file "data.txt"
@@ -305,7 +304,6 @@ bool sortByName(Patients &a, Patients &b)
 }
 void Sort(Patients lib[])
 {
-    int i, j;
     cout<<"\nHow would you like to sort the data?\n";
     cout<<"[1] By Name\n";
     cout<<"[2] By ID\n";
@@ -319,7 +317,7 @@ void Sort(Patients lib[])
         cout<<"Patient-Number\tName\t\tID\tAge\tPhoneNumber\tMedicine\tDose\n";
         for (int i=0;i<Size;i++)
         {
-          cout<<"\t"<<i+1<<"\t"<<lib[i].name<<"\t\t"<<lib[i].ID<<"\t"<<lib[i].age<<"\t"<<lib[i].PhoneNumber<<"\t\t"<<lib[i].medicine<<"\t\t"<<lib[i].dose<<endl;
+            cout<<"\t"<<i+1<<"\t"<<lib[i].name<<"\t\t"<<lib[i].ID<<"\t"<<lib[i].age<<"\t"<<lib[i].PhoneNumber<<"\t\t"<<lib[i].medicine<<"\t\t"<<lib[i].dose<<endl;
         }
         cout<<endl;
     }
@@ -330,7 +328,7 @@ void Sort(Patients lib[])
         cout<<"Patient-Number\tName\t\tID\tAge\tPhoneNumber\tMedicine\tDose\n";
         for (int i=0;i<Size;i++)
         {
-          cout<<"\t"<<i+1<<"\t"<<lib[i].name<<"\t\t"<<lib[i].ID<<"\t"<<lib[i].age<<"\t"<<lib[i].PhoneNumber<<"\t\t"<<lib[i].medicine<<"\t\t"<<lib[i].dose<<endl;
+            cout<<"\t"<<i+1<<"\t"<<lib[i].name<<"\t\t"<<lib[i].ID<<"\t"<<lib[i].age<<"\t"<<lib[i].PhoneNumber<<"\t\t"<<lib[i].medicine<<"\t\t"<<lib[i].dose<<endl;
         }
         cout<<endl;
     }
