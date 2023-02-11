@@ -1,4 +1,3 @@
-//Team Members: Mustafa Aljishi, Ali Abu Hulaigah, Mohammed AlAjmi, Ali AlBaqqal, Omar AlSubgh, Baqer AlHaddad
 #include <iostream>
 #include <string>
 #include <algorithm>
